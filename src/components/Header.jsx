@@ -17,7 +17,7 @@ const Header = () => {
         data-aos-duration="1500"
         className="text-3xl md:4xl lg:5xl font-light m-0"
       >
-        MCODE
+        NEXORA
       </h1>
       <nav className="hidden md:flex items-center gap-12">
         
