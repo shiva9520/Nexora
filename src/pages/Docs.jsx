@@ -2,7 +2,7 @@ import React from 'react';
 
 const Docs = () => {
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center">
+    <div className="min-h-screen bg-black text-white flex items-center justify-center mb-5">
       <div
         data-aos="fade-up"
         data-aos-duration="1500"
@@ -12,7 +12,7 @@ const Docs = () => {
         <p className="text-lg md:text-xl text-gray-400 mb-12">
           Comprehensive documentation to help you get started and make the most of Nexora.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div
             data-aos="fade-up"
             data-aos-delay="200"

@@ -8,6 +8,7 @@ import Company from "./pages/Company";
 import Features from "./pages/Features";
 import Resources from "./pages/Resources";
 import Docs from "./pages/Docs";
+import StartBuilding from "./pages/StartBuilding";
 
 const App = () => {
   useEffect(() => {
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/features" element={<Features />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/docs" element={<Docs />} />
+        <Route path="/start-building" element={<StartBuilding />} />
       </Routes>
     </Router>
   );

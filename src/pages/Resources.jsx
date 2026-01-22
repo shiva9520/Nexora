@@ -12,7 +12,7 @@ const Resources = () => {
         <p className="text-lg md:text-xl text-gray-400 mb-12">
           Explore our comprehensive resources to get the most out of Nexora.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div
             data-aos="fade-up"
             data-aos-delay="200"

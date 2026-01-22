@@ -12,7 +12,7 @@ const Company = () => {
         <p className="text-lg md:text-xl text-gray-400 mb-12">
           Nexora is a unified platform for developers to design, deploy, and monitor high-performance applications without worrying about infrastructure.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div
             data-aos="fade-up"
             data-aos-delay="200"

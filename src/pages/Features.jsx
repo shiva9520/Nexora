@@ -12,7 +12,7 @@ const Features = () => {
         <p className="text-lg md:text-xl text-gray-400 mb-12">
           Discover the powerful features that make Nexora the ultimate platform for developers.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div
             data-aos="fade-up"
             data-aos-delay="200"
