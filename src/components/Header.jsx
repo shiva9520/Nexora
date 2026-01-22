@@ -79,24 +79,28 @@ const Header = () => {
         <nav className="flex flex-col gap-6 items-center">
           <Link
             to="/company"
+            onClick={toggleMobileMenu}
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
           >
             COMPANY
           </Link>
           <Link
             to="/features"
+            onClick={toggleMobileMenu}
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
           >
             FEATURES
           </Link>
           <Link
             to="/resources"
+            onClick={toggleMobileMenu}
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
           >
             RESOURCES
           </Link>
           <Link
             to="/docs"
+            onClick={toggleMobileMenu}
             className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
           >
             DOCS
