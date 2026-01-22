@@ -1,113 +1,95 @@
 import "boxicons/css/boxicons.min.css";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Header = () => {
-  const toggleMobileMenu = () => {
-    const mobileMenu = document.getElementById("mobileMenu");
-    if (mobileMenu.classList.contains("hidden")) {
-      mobileMenu.classList.remove("hidden");
-    } else {
-      mobileMenu.classList.add("hidden");
-    }
-  };
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Detect scroll for blur background
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Lock background scroll when menu open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "auto";
+  }, [menuOpen]);
 
   return (
-    <header className="flex justify-between items-center py-4 px-4 lg:px-20">
-      <Link to="/">
-        <h1
-          data-aos="fade-down"
-          data-aos-easing="linear"
-          data-aos-duration="1500"
-          className="text-3xl md:4xl lg:5xl font-light m-0 cursor-pointer"
-        >
-          NEXORA
-        </h1>
-      </Link>
-      <nav className="hidden md:flex items-center gap-12">
-        <Link
-          to="/company"
-          data-aos="fade-down"
-          data-aos-easing="linear"
-          data-aos-duration="1000"
-          className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
-        >
-          COMPANY
-        </Link>
-        <Link
-          to="/features"
-          data-aos="fade-down"
-          data-aos-easing="linear"
-          data-aos-duration="1500"
-          className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
-        >
-          FEATURES
-        </Link>
-        <Link
-          to="/resources"
-          data-aos="fade-down"
-          data-aos-easing="linear"
-          data-aos-duration="2000"
-          className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
-        >
-          RESOURCES
-        </Link>
-        <Link
-          to="/docs"
-          data-aos="fade-down"
-          data-aos-easing="linear"
-          data-aos-duration="2500"
-          className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
-        >
-          DOCS
-        </Link>
-      </nav>
-      <button className="hidden md:block bg-[#a7a7a7] text-black py-3 px-8 rounded-full border-none font-medium transition-all duration-500 hover:bg-white cursor-pointer z-50">
-        SIGNIN
-      </button>
-      {/* mobile - nav */}
-      <button
-        onClick={toggleMobileMenu}
-        className="md:hidden text-3xl p-2 z-50"
+    <>
+      {/* HEADER */}
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
+          ${
+            scrolled
+              ? "bg-black/60 backdrop-blur-md shadow-lg"
+              : "bg-transparent"
+          }
+        `}
       >
-        <i className="bx bx-menu"></i>
-      </button>
-      {/* mobile - menu */}
-      <div
-        id="mobileMenu"
-        className="hidden fixed top-16 bottom-0 right-0 left-0 p-5 md:hidden z-40 bg-black bg-opacity-70 backdrop-blur-md"
-      >
-        <nav className="flex flex-col gap-6 items-center">
-          <Link
-            to="/company"
-            onClick={toggleMobileMenu}
-            className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
-          >
-            COMPANY
+        <div className="flex justify-between items-center py-4 px-4 lg:px-20">
+          <Link to="/">
+            <h1 className="text-3xl font-light cursor-pointer">NEXORA</h1>
           </Link>
-          <Link
-            to="/features"
-            onClick={toggleMobileMenu}
-            className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-12">
+            <Link to="/company">COMPANY</Link>
+            <Link to="/features">FEATURES</Link>
+            <Link to="/resources">RESOURCES</Link>
+            <Link to="/docs">DOCS</Link>
+          </nav>
+
+          <button className="hidden md:block bg-[#a7a7a7] text-black py-3 px-8 rounded-full font-medium">
+            SIGNIN
+          </button>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen(true)}
+            className="md:hidden text-3xl z-50"
           >
-            FEATURES
-          </Link>
-          <Link
-            to="/resources"
-            onClick={toggleMobileMenu}
-            className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
+            <i className="bx bx-menu"></i>
+          </button>
+        </div>
+      </header>
+
+      {/* MOBILE MENU */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-xl flex flex-col">
+          {/* Close Button */}
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="self-end text-4xl p-5"
           >
-            RESOURCES
-          </Link>
-          <Link
-            to="/docs"
-            onClick={toggleMobileMenu}
-            className="text-base tracking-wider transition-colors hover:text-gray-300 z-50"
-          >
-            DOCS
-          </Link>
-        </nav>
-      </div>
-    </header>
+            <i className="bx bx-x"></i>
+          </button>
+
+          <nav className="flex flex-col items-center gap-8 mt-16 text-lg">
+            <Link to="/company" onClick={() => setMenuOpen(false)}>
+              COMPANY
+            </Link>
+            <Link to="/features" onClick={() => setMenuOpen(false)}>
+              FEATURES
+            </Link>
+            <Link to="/resources" onClick={() => setMenuOpen(false)}>
+              RESOURCES
+            </Link>
+            <Link to="/docs" onClick={() => setMenuOpen(false)}>
+              DOCS
+            </Link>
+          </nav>
+        </div>
+      )}
+
+      {/* Spacer so content doesn’t hide under fixed header */}
+      <div className="h-[72px]" />
+    </>
   );
 };
 
